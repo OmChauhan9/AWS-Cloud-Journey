@@ -1,4 +1,4 @@
-# Project: Creating a Private Subnet
+# Creating a Private Subnet
 
 ## 🎯 Project Goal
 To implement a "Zero Trust" network foundation by creating a **Private Subnet** that is completely isolated from the public internet. The goal was to configure routing and firewalls (NACLs) to strictly control traffic flow.
