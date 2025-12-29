@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found</title>
+
+  <style>
+    :root {
+      --bg: #020617;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: radial-gradient(circle at top, #020617, #000);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 640px;
+      padding: 3rem;
+      background: rgba(17, 24, 39, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background: rgba(248, 113, 113, 0.25);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>404</h1>
+    <p>
+      The page you’re looking for does not exist.<br />
+      It may have wandered off, collapsed into entropy,
+      or never existed in this universe.
+    </p>
+
+    <a href="/">Return Home</a>
+
+    <footer>
+      <p>Served directly from S3 static hosting</p>
+    </footer>
+  </main>
+</body>
+</html>
+
