@@ -28,11 +28,16 @@ To implement **Defense in Depth**, I replaced the default "Allow All" Network AC
 * **Rule Set:** Configured with a default **DENY** posture to act as a strict boundary for the subnet.
 
 ## 📸 Verification
-*Proof of configuration can be found in the `/screenshots` folder.*
+<img width="1480" height="286" alt="Screenshot 2025-12-28 at 5 02 48 PM" src="https://github.com/user-attachments/assets/4f5b43d3-0457-442d-bd0d-beadba7960b5" />
 
 1.  **Routing Table Proof:** Screenshot shows the absence of an `igw-xxxxx` target, verifying total isolation.
-2.  **Subnet Configuration:** Screenshot confirms the specific CIDR block and correct route table association.
-3.  **Security Layer:** Screenshot of the NACL showing the explicit traffic rules.
+   <img width="1512" height="810" alt="Screenshot 2025-12-28 at 5 28 25 PM" src="https://github.com/user-attachments/assets/40a63253-2ee5-431a-9c9e-7a1cd19a1aba" />
+
+3.  **Subnet Configuration:** Screenshot confirms the specific CIDR block and correct route table association.
+   <img width="1512" height="810" alt="Screenshot 2025-12-28 at 5 28 04 PM" src="https://github.com/user-attachments/assets/bbd910e9-ebce-4cbe-8062-a2b7bd41a05c" />
+
+4.  **Security Layer:** Screenshot of the NACL showing the explicit traffic rules.
+   <img width="1512" height="810" alt="Screenshot 2025-12-28 at 5 28 45 PM" src="https://github.com/user-attachments/assets/0e885b4b-f125-46e8-8d68-78d872a931ca" />
 
 ## 🧠 Key Learnings
 * **Isolation is Routing:** A subnet is only "private" if its Route Table says so. IP settings alone are not enough.
