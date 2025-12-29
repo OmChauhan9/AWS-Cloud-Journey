@@ -20,7 +20,7 @@ I created a custom VPC to host my infrastructure.
 
 ### 2. Carving Out a Subnet
 Inside the VPC, I created a specific sub-network for resources.
-* **Zone:** `us-east-1a` (Fixed Availability Zone for high availability planning).
+* **Zone:** `us-east-1f` (Fixed Availability Zone for high availability planning).
 * **CIDR:** `10.0.0.0/24` (Allocating 256 IPs for this specific subnet).
 
 ### 3. Enabling Public Connectivity
