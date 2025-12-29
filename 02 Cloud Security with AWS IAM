@@ -1,0 +1,38 @@
+# Cloud Security with AWS IAM
+
+## 🎯 Project Goal
+To secure a cloud environment by implementing the **Principle of Least Privilege**. I created a scoped "Developer" identity that can manage specific resources based on tags but is strictly forbidden from touching Production infrastructure.
+
+## ⚙️ Security Architecture
+* **Identity:** IAM User (`NextWork-Dev-User`) managed via an IAM Group.
+* **Policy:** Custom JSON policy enforcing **Tag-Based Access Control**.
+* **Resource:** EC2 Instances tagged as `Environment: Production` vs. `Environment: Development`.
+
+## 🛠️ Implementation Steps
+
+### 1. Environment Tagging
+I launched two EC2 instances to simulate a real-world setup:
+* **Prod Server:** Tagged `Env: Production`
+* **Dev Server:** Tagged `Env: Development`
+
+### 2. Custom Policy Creation (JSON)
+Instead of using a default AWS policy (which is often too broad), I wrote a custom JSON policy.
+* **Effect:** `Allow` EC2 actions.
+* **Condition:** Actions are ONLY allowed if the resource tag `Env` equals `Development`.
+* **Explicit Deny:** Protected critical tags from being removed or changed.
+
+### 3. User & Group Management
+* Created a **User Group** (`NextWork-Dev-Group`) and attached the custom policy.
+* Created the **IAM User** and added them to the group.
+* *Why:* Managing permissions via Groups is a scalable best practice compared to attaching policies directly to individual users.
+
+## 📸 Verification
+
+1.  **Policy Details:** the permissions defined in the policy.
+2.  **Access Denied:** Screenshot demonstrating the "Dev User" attempting to stop a "Production" instance and receiving an authorization error.
+3.  **Successful Action:** The same user was successfully able to stop the "Development" instance, verifying the permissions boundary is accurate.
+
+## 🧠 Key Learnings
+* **Policies are the Firewall:** IAM is the first line of defense. A well-written policy can prevent accidents better than a manual process.
+* **The Power of Tags:** Combining `Condition` blocks with Resource Tags allows for dynamic permission management (e.g., any new "Dev" server is automatically accessible to the Dev team).
+* **Explicit Deny:** An explicit `Deny` in a policy always overrides an `Allow`, making it a powerful tool for protecting critical assets.
