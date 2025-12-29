@@ -31,9 +31,12 @@ I added an extra layer of security at the subnet level.
 
 1.  **Public Routing:** the Route Table has an active path to the Internet Gateway.
    <img width="1510" height="854" alt="Screenshot 2025-12-29 at 12 11 27 AM" src="https://github.com/user-attachments/assets/ef7f4d76-866b-4e1c-b6e0-2b33c782a53f" /><br>
+   
 2.  **Security Rules:** the Security Group Inbound rules permitting web traffic.
    <img width="1510" height="854" alt="Screenshot 2025-12-29 at 12 11 59 AM" src="https://github.com/user-attachments/assets/df40f1e6-bf24-40b5-b7d5-72fb1377111d" /><br>
+   
 3.  **NACL Logic:** the specific Inbound/Outbound rulesets applied to the subnet.
+   
    <img width="1510" height="854" alt="Screenshot 2025-12-29 at 12 12 53 AM" src="https://github.com/user-attachments/assets/3eec41cb-a852-402b-87cc-7cfb6615f9dd" />
    <img width="1510" height="854" alt="Screenshot 2025-12-29 at 12 12 58 AM" src="https://github.com/user-attachments/assets/5ba639d7-ca0c-4a3b-94aa-3219c185b9d6" /><br>
 
