@@ -1,4 +1,4 @@
-# Project: VPC Traffic Flow & Security
+# VPC Traffic Flow & Security
 
 ## 🎯 Project Goal
 To configure the "nervous system" of the Virtual Private Cloud (VPC) by establishing internet connectivity via Route Tables and implementing a defense-in-depth security strategy using both Security Groups and Network ACLs.
