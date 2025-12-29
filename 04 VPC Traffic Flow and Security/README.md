@@ -30,6 +30,9 @@ I added an extra layer of security at the subnet level.
 
 ## 📸 Verification
 
+<img width="1496" height="394" alt="Screenshot 2025-12-29 at 12 31 02 AM" src="https://github.com/user-attachments/assets/914abd34-01cb-4648-887c-8cfa82976b16" /><br>
+
+
 1.  **Public Routing:** the Route Table has an active path to the Internet Gateway.
    <img width="1510" height="854" alt="Screenshot 2025-12-29 at 12 11 27 AM" src="https://github.com/user-attachments/assets/ef7f4d76-866b-4e1c-b6e0-2b33c782a53f" /><br>
    
