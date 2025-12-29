@@ -1,4 +1,4 @@
-# Project: Build a Virtual Private Cloud (VPC)
+# Build a Virtual Private Cloud (VPC)
 
 ## 🎯 Project Goal
 To establish a custom, isolated network environment in AWS, moving away from the "Default VPC" to gain full control over IP addressing, subnets, and external connectivity.
