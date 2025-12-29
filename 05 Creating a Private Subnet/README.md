@@ -9,7 +9,7 @@ To implement a "Zero Trust" network foundation by creating a **Private Subnet** 
 * **Availability Zone:** `us-east-1a`
 * **Internet Access:** **None** (No Internet Gateway attached)<br>
 
-<img width="976" height="621" alt="Screenshot 2025-12-28 at 10 47 05 PM" src="https://github.com/user-attachments/assets/c6954f33-9c90-41e5-b279-fd0780e0955a" />
+   <img width="976" height="621" alt="Screenshot 2025-12-28 at 10 47 05 PM" src="https://github.com/user-attachments/assets/c6954f33-9c90-41e5-b279-fd0780e0955a" />
 
 ## 🛠️ Implementation Steps
 
