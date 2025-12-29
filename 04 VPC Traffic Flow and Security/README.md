@@ -7,6 +7,7 @@ To configure the "nervous system" of the Virtual Private Cloud (VPC) by establis
 * **Traffic Control:** Custom Route Table pointing to an Internet Gateway.
 * **Instance Security:** Security Group acting as a **Stateful Firewall** (allowing Web & SSH).
 * **Subnet Security:** Network ACL (NACL) acting as a **Stateless Firewall** for traffic filtering.<br>
+
   <img width="828" height="538" alt="Screenshot 2025-12-29 at 12 22 59 AM" src="https://github.com/user-attachments/assets/52780910-b9dd-4be4-bfb1-0aca72f62087" />
 
 
