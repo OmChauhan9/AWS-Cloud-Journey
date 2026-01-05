@@ -8,6 +8,7 @@ To deploy a high-performance, cloud-native relational database architecture. Ins
 * **Database Cluster:** Configured with a "Writer" instance for data entry and the capability for "Reader" replicas for high availability.
 * **Amazon EC2:** A virtual server (`t3.micro`) acting as the host for the future web application.
 * **VPC Security Groups:** Configured to allow secure internal traffic between the Web Server and the Database.<br>
+
   <img width="873" height="633" alt="Database 1" src="https://github.com/user-attachments/assets/87d8902e-1f62-4bbc-ade3-a7239150b87a" /><br>
 
 
