@@ -45,15 +45,15 @@ To simulate a full cybersecurity kill chain (Attack & Defense) in a cloud enviro
 ## 📸 Verification
 
 1.  **The Exploit:** Successfully logging in as Admin via SQL Injection.
-    <img width="1200" height="1440" alt="image" src="https://github.com/user-attachments/assets/8b9b00f1-d374-43c1-8065-73d0662145a1" /><br>
+    <img width="594" height="770" alt="image" src="https://github.com/user-attachments/assets/5fb83f20-2d0f-47d7-a7a2-72d32f543f17" /><br>
 
-    <img width="3362" height="2538" alt="image" src="https://github.com/user-attachments/assets/ec507651-40f8-4730-8974-ad0cd82a66e3" /><br>
+    <img width="1063" height="749" alt="image" src="https://github.com/user-attachments/assets/c2955cd7-f65e-4cee-b1bc-60480bdeef28" /><br>
 
 2.  **The Breach:** CloudShell terminal showing the contents of the stolen secret file.
-    <img width="3488" height="1436" alt="image" src="https://github.com/user-attachments/assets/de98c29c-5b09-4e16-8b7a-4f6df2cc95a1" /><br>
+    <img width="1540" height="455" alt="image" src="https://github.com/user-attachments/assets/2179c4db-9357-42e3-bb72-21234aacd1d3" /><br>
 
 3.  **The Detection:** GuardDuty Console displaying the High Severity finding details.
-    <img width="2568" height="1524" alt="image" src="https://github.com/user-attachments/assets/e846482b-0da9-446e-b3d2-1681f221774d" /><br>
+    <img width="1330" height="662" alt="image" src="https://github.com/user-attachments/assets/ac89340d-68e1-45e4-a973-e7033bb2ada0" /><br>
 
 ## 🧠 Key Learnings
 * **Input Sanitization:** The critical importance of validating user input to prevent SQL and Command Injection.
