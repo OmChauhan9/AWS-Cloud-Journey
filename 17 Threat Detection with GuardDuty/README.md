@@ -45,6 +45,8 @@ To simulate a full cybersecurity kill chain (Attack & Defense) in a cloud enviro
 ## 📸 Verification
 
 1.  **The Exploit:** Successfully logging in as Admin via SQL Injection.
+    <img width="1200" height="1440" alt="image" src="https://github.com/user-attachments/assets/8b9b00f1-d374-43c1-8065-73d0662145a1" /><br>
+
     <img width="3362" height="2538" alt="image" src="https://github.com/user-attachments/assets/ec507651-40f8-4730-8974-ad0cd82a66e3" /><br>
 
 2.  **The Breach:** CloudShell terminal showing the contents of the stolen secret file.
