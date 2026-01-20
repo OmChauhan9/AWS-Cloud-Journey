@@ -1,38 +1,35 @@
-# Deploying Microservices on Amazon EKS
+# Infrastructure as Code: Defining Microservices for EKS
 
 ## 🎯 Project Goal
-To deploy a scalable, containerized application on a production-grade Kubernetes cluster. Building on the previous infrastructure setup, I utilized **Kubernetes Manifests (YAML)** to define the desired state of a "Storefront" microservice and leveraged **Services** to expose it to the public internet via an AWS Load Balancer.
+To translate a containerized application into a production-ready Kubernetes architecture. Following the containerization of the Backend API (Docker/ECR), this phase focused on **Infrastructure as Code (IaC)**. I authored **Kubernetes Manifests (YAML)** to define the desired state of the application's compute (Deployment) and networking (Service) layers before deployment.
 
-## ⚙️ Architecture Components
-* **Deployment (Controller):** Manages the lifecycle of the application, ensuring 3 replicas are always running for High Availability.
-* **Pod:** The atomic unit of the application (hosting the Container).
-* **Service (LoadBalancer):** An abstraction layer that provides a stable endpoint for traffic, automatically provisioning an **AWS Classic Load Balancer** to route requests to the dynamic pods.
-* **kubectl:** The command-line tool used to send instructions to the Kubernetes API Server.<br>
+## ⚙️ Architecture Design
+* **Kubernetes Deployment:** chosen to manage the stateless Flask backend, ensuring High Availability through replica management.
+* **ClusterIP Service:** Selected as the networking model to restrict access. Unlike the public-facing Storefront, the Backend API is designed to be accessible *only* by other pods within the cluster, not the public internet.
+* **Declarative Configuration:** Used YAML to define the *end state* of the system rather than imperative commands.<br>
 
   <img width="1570" height="818" alt="CC 9" src="https://github.com/user-attachments/assets/2906afe7-fe23-4e95-bfa8-7692cbec40fd" /><br>
 
 
 ## 🛠️ Implementation Steps
 
-### 1. Defining the State (YAML Manifests)
-* **Deployment Strategy:** Created `flask-deployment.yaml` to define the application logic:
-    * **Image:** Pulled a custom container image from ECR (`public.ecr.aws/nextwork/store-app`).
-    * **Scale:** Configured `replicas: 3` to distribute load and handle failures.
-* **Network Strategy:** Created `flask-service.yaml` to handle ingress traffic:
-    * **Type:** Set to `LoadBalancer` to trigger the creation of an external AWS ELB.
-    * **Port Mapping:** Mapped external Port 80 to internal Container Port 80.
+### 1. Designing the Compute Layer (Deployment)
+* **Objective:** Define how the application should run on the cluster.
+* **Configuration:** Authored `backend-deployment.yaml` with the following specifications:
+    * **Replicas:** Set to `3` to ensure redundancy and load distribution.
+    * **Image Source:** Configured to pull the `nextwork-flask-backend` image securely from my private **Amazon ECR** repository.
+    * **Selectors:** Defined strict `matchLabels` to ensure the Deployment Controller manages the correct set of Pods.
 
-### 2. Deployment & Orchestration
-* **Execution:** Applied the manifests using `kubectl apply -f .`.
-* **Observation:** Verified that the **Scheduler** distributed the 3 pods across the available Worker Nodes.
+### 2. Designing the Network Layer (Service)
+* **Objective:** Define how other applications (like the Frontend) will talk to this Backend.
+* **Configuration:** Authored `backend-service.yaml`.
+* **Security Decision:** Specifically chose `type: ClusterIP`.
+    * **Why:** The backend handles business logic and should not be exposed to the public web. `ClusterIP` assigns it a stable internal IP address reachable only by internal cluster traffic (Service Discovery).
+* **Port Strategy:** Mapped internal Container Port `5000` (Flask default) to Service Port `5000`.
 
-### 3. Resilience Testing
-* **Test:** Manually deleted a running Pod (`kubectl delete pod ...`).
-* **Result:** The **ReplicaSet Controller** immediately detected the deviation from the "Desired State" (2 vs 3) and spun up a new Pod instantly, proving the self-healing nature of the architecture.
-
-### 4. Public Access
-* **Discovery:** Retrieved the `EXTERNAL-IP` using `kubectl get service`.
-* **Access:** Successfully accessed the web application via the provisioned AWS Load Balancer DNS, confirming end-to-end connectivity from the Internet -> Load Balancer -> Worker Node -> Pod.
+### 3. Service Discovery Logic
+* **Concept:** By naming the Service object `backend-service`, I enabled Kubernetes' internal DNS (CoreDNS) to resolve this name.
+* **Result:** The Frontend application will be able to reach the backend simply by calling `http://backend-service:5000`, decoupling the architecture from changing IP addresses.
 
 ## 📸 Verification
 
@@ -44,6 +41,6 @@ To deploy a scalable, containerized application on a production-grade Kubernetes
 
 
 ## 🧠 Key Learnings
-* **Imperative vs. Declarative:** Shifted from "launching servers" (Imperative) to "defining states" (Declarative) using YAML.
-* **The Service Abstraction:** Understood that Pods are ephemeral (they die and change IPs), so a **Service** is required to provide a stable, permanent address for clients to connect to.
-* **Cloud Integration:** Witnessed the seamless integration where a Kubernetes command (`type: LoadBalancer`) triggers a physical AWS infrastructure event (creating an ELB).
+* **Declarative Syntax:** Mastered the structure of Kubernetes YAML (`apiVersion`, `kind`, `metadata`, `spec`) and the importance of precise indentation.
+* **Internal vs. External Traffic:** Deepened understanding of Kubernetes Service types—specifically why a Backend requires `ClusterIP` (Private) while a Frontend requires `LoadBalancer` (Public).
+* **Label Selectors:** Learned how the `selector` field acts as the "glue" that binds a Service to a specific set of Pods managed by a Deployment.
