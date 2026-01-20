@@ -24,7 +24,6 @@ This repository documents my journey through the **[NextWork](https://www.nextwo
 A fully automated deployment pipeline for a Java Web App. This project moves away from manual "ClickOps" to a robust "Commit-to-Deploy" workflow.
 * **Architecture:** GitHub ➔ CodeArtifact ➔ CodeBuild ➔ CodeDeploy ➔ Production EC2.
 * **Key Features:** Infrastructure as Code (CloudFormation), Automated Rollbacks, Dependency Caching.
-* **[View Project Documentation](./DevOps-Challenge/README.md)** *(Link to your 7-day challenge folder)*
 
 ### 2️⃣ Enterprise Networking: Custom VPC 🌐
 *> **Role:** Network Architect*
@@ -74,5 +73,3 @@ I am a **Master of Science in Software Engineering** student at **Arizona State 
 
 * **GitHub:** [OmChauhan9](https://github.com/OmChauhan9)
 * **LinkedIn:** [Om Chauhan](https://www.linkedin.com/in/om-chauhan-42531918b/)
-
-![Visitor Count](https://profile-counter.glitch.me/OmChauhan9/count.svg)
