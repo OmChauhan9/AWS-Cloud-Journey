@@ -1,38 +1,45 @@
-# Microservices on EKS: Deploying the Backend
+# Cloud-Native Deployment: Flask API on Amazon EKS
 
 ## 🎯 Project Goal
-To complete the microservices architecture on Amazon EKS. Having deployed the Frontend (Storefront) and containerized the Backend (Flask API), this project focused on **deploying the Backend** to the cluster and establishing secure, internal communication between the services using **Kubernetes Service Discovery**.
+To deploy a backend microservice to a Kubernetes environment. Moving beyond local testing, I utilized **Amazon EKS** to orchestrate the deployment, **Amazon ECR** to manage the container artifacts, and **Kubernetes Manifests** to define the infrastructure state declaratively.
 
 ## ⚙️ Architecture Components
-* **Backend Microservice:** A Flask-based API containerized with Docker.
-* **ClusterIP Service:** A Kubernetes Service type that exposes the application on an internal IP, accessible only within the cluster.
-* **CoreDNS:** The internal DNS server in Kubernetes that allows services to resolve each other by name (e.g., `backend-service`).
-* **Service Discovery:** The mechanism allowing the Frontend to find the Backend without hardcoding IP addresses.<br>
+* **Amazon EKS:** Managed Kubernetes Cluster (Control Plane).
+* **Amazon ECR:** Private Container Registry hosting the Docker image.
+* **Kubernetes Deployment:** Manages the availability of the backend application (3 Replicas).
+* **ClusterIP Service:** Exposes the backend securely to internal cluster traffic only.
+* **EC2 Admin Host:** Used as a secure bastion for running `kubectl` and `docker` commands.<br>
 
   <img width="1511" height="790" alt="CC 10" src="https://github.com/user-attachments/assets/ee863de4-c928-43f0-813e-8203137679e0" /><br>
 
 
 ## 🛠️ Implementation Steps
 
-### 1. Deployment Configuration
-* **Manifest Creation:** Authored `backend-deployment.yaml` to define the desired state.
-* **Image Linking:** Configured the deployment to pull the specific Docker image (`nextwork-flask-backend`) from my private **Amazon ECR** repository.
-* **Resiliency:** Set `replicas: 2` to ensure redundancy.
+### 1. Artifact Pipeline (Docker & ECR)
+* **Build:** Cloned the Flask application code and built the Docker image locally on the EC2 instance.
+* **Security:** Configured IAM permissions to allow the EC2 instance to push to the private ECR repository.
+* **Push:** Tagged and pushed the image to Amazon ECR, ensuring a centralized "Source of Truth" for the deployment artifact.
 
-### 2. Internal Network Configuration
-* **Security Decision:** Chose `ClusterIP` instead of `LoadBalancer` for the `backend-service`. This ensures the API is **not** exposed to the public internet, adhering to the Principle of Least Privilege.
-* **Port Mapping:** Exposed the application on Port 5000.
+### 2. Kubernetes Orchestration
+* **Deployment:** Authored `backend-deployment.yaml` to instruct the cluster to pull the image from ECR and run 3 replicas.
+* **Networking:** Authored `backend-service.yaml` using `type: ClusterIP`. This ensures the backend is accessible via DNS (`http://backend-service`) to other pods but remains invisible to the public internet.
 
-### 3. Verification (Internal Connectivity)
-* **Challenge:** Since the backend is private, I could not test it via a web browser.
-* **Solution:** Used `kubectl exec` to log into a running **Storefront Pod**.
-* **Test:** Executed a `curl` command from the Storefront to the Backend using its DNS name:
-    ```bash
-    curl http://backend-service:5000/api/status
-    ```
-* **Result:** Received a `200 OK` JSON response, confirming that the Frontend can successfully talk to the Backend via the internal network.
+### 3. Verification & "Secret Mission"
+* **Internal Test:** Used `kubectl exec` to enter a separate pod and successfully `curl` the backend service, proving internal connectivity.
+* **Console Auditing:** Navigated the **Amazon EKS Console** to inspect Pod Events. Verified the `Pulled` and `Created` events, confirming the successful integration between the EKS Control Plane and the ECR Registry.
+
+## 📸 Verification
+
+1.  **Artifact Storage:** ECR Console displaying the versioned container image.
+    <img width="1511" alt="ECR Image" src="PLACEHOLDER_LINK_HERE" /><br>
+
+2.  **Cluster Status:** Terminal output showing healthy Pods and Services.
+    <img width="1511" alt="Kubectl Get Pods" src="PLACEHOLDER_LINK_HERE" /><br>
+
+3.  **Deployment Audit:** EKS Console Events tab proving successful image pulling.
+    <img width="1511" alt="Pod Events" src="PLACEHOLDER_LINK_HERE" /><br>
 
 ## 🧠 Key Learnings
-* **Public vs. Private:** Mastered the use cases for `LoadBalancer` (Ingress/Frontend) vs. `ClusterIP` (Internal/Backend).
-* **Service Discovery:** Learned that in Kubernetes, apps don't talk to IPs; they talk to **Service Names**, and CoreDNS handles the routing.
-* **Debugging Pods:** Gained experience using `kubectl exec` to troubleshoot connectivity issues from *inside* the cluster environment.
+* **The "Code-to-Cloud" Path:** connecting the dots between raw code (Git) -> Artifact (Docker/ECR) -> Running Application (EKS).
+* **Security Best Practices:** Why Backend APIs should use `ClusterIP` (Private) instead of `LoadBalancer` (Public).
+* **Debugging:** How to use the AWS Console to view Pod Events when troubleshooting deployment failures (e.g., `ImagePullBackOff`).
