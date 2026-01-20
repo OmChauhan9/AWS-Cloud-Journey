@@ -15,10 +15,10 @@ To deploy a scalable, containerized application on a production-grade Kubernetes
 ## 🛠️ Implementation Steps
 
 ### 1. Defining the State (YAML Manifests)
-* **Deployment Strategy:** Created `store-deployment.yaml` to define the application logic:
+* **Deployment Strategy:** Created `flask-deployment.yaml` to define the application logic:
     * **Image:** Pulled a custom container image from ECR (`public.ecr.aws/nextwork/store-app`).
     * **Scale:** Configured `replicas: 3` to distribute load and handle failures.
-* **Network Strategy:** Created `store-service.yaml` to handle ingress traffic:
+* **Network Strategy:** Created `flask-service.yaml` to handle ingress traffic:
     * **Type:** Set to `LoadBalancer` to trigger the creation of an external AWS ELB.
     * **Port Mapping:** Mapped external Port 80 to internal Container Port 80.
 
