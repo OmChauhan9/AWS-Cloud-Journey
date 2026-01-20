@@ -32,20 +32,6 @@ To complete the microservices architecture on Amazon EKS. Having deployed the Fr
     ```
 * **Result:** Received a `200 OK` JSON response, confirming that the Frontend can successfully talk to the Backend via the internal network.
 
-## 📸 Verification
-
-1.  **Pod Overview:** Terminal showing all microservices (Store & Backend) running in the cluster.
-    <img width="1511" alt="All Pods Running" src="PLACEHOLDER_LINK_HERE" /><br>
-
-2.  **Deployment Manifest:** The YAML file configured with the ECR Image URI.
-    <img width="1511" alt="Backend Manifest" src="PLACEHOLDER_LINK_HERE" /><br>
-
-3.  **Service List:** Evidence of the distinction between Public (LoadBalancer) and Private (ClusterIP) services.
-    <img width="1511" alt="Service List" src="PLACEHOLDER_LINK_HERE" /><br>
-
-4.  **Connectivity Proof:** Successful `curl` response proving internal Service Discovery is working.
-    <img width="1511" alt="Internal Curl Test" src="PLACEHOLDER_LINK_HERE" /><br>
-
 ## 🧠 Key Learnings
 * **Public vs. Private:** Mastered the use cases for `LoadBalancer` (Ingress/Frontend) vs. `ClusterIP` (Internal/Backend).
 * **Service Discovery:** Learned that in Kubernetes, apps don't talk to IPs; they talk to **Service Names**, and CoreDNS handles the routing.
